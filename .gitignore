@@ -1,0 +1,47 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Generated notation cache (cleared on app exit, no need to track)
+notation/cache/
+
+# LilyPond build artifacts
+*.eps
+*.pdf
+*.ly
+*.texi
+*.tex
+*.count
+
+# music21 environment config
+music21-environment.xml
+.music21rc
+
+# PyQt / Qt
+*.pyc
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+dist/
+build/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log

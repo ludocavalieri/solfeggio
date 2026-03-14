@@ -1,0 +1,171 @@
+/* ============================================================
+   Solfio — Dark Theme
+   Deep charcoal with warm amber accent
+   ============================================================ */
+
+QWidget {
+    background-color: #1c1c1e;
+    color: #f0ebe0;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+}
+
+QMainWindow {
+    background-color: #1c1c1e;
+}
+
+#sidebar {
+    background-color: #242426;
+    border-left: 1px solid #333335;
+}
+
+#section_label {
+    color: #d4a853;
+    font-size: 11px;
+    font-family: "Courier New", monospace;
+    letter-spacing: 2px;
+}
+
+QComboBox {
+    background-color: #2e2e30;
+    color: #f0ebe0;
+    border: 1px solid #444446;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+QComboBox:hover { border-color: #d4a853; }
+
+QComboBox::drop-down { border: none; padding-right: 8px; }
+
+QComboBox QAbstractItemView {
+    background-color: #2e2e30;
+    color: #f0ebe0;
+    selection-background-color: #d4a853;
+    selection-color: #1c1c1e;
+    border: 1px solid #444446;
+}
+
+QCheckBox {
+    color: #c8c3b8;
+    spacing: 8px;
+    font-size: 13px;
+}
+
+QCheckBox:hover { color: #f0ebe0; }
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #555557;
+    background-color: #2e2e30;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #d4a853;
+    border-color: #d4a853;
+}
+
+QCheckBox::indicator:hover { border-color: #d4a853; }
+
+QSpinBox {
+    background-color: #2e2e30;
+    color: #f0ebe0;
+    border: 1px solid #444446;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 14px;
+}
+
+QSpinBox:hover { border-color: #d4a853; }
+
+QSpinBox::up-button, QSpinBox::down-button {
+    background-color: #3a3a3c;
+    border: none;
+    width: 20px;
+}
+
+QSpinBox::up-button:hover, QSpinBox::down-button:hover {
+    background-color: #d4a853;
+}
+
+#generate_button {
+    background-color: #d4a853;
+    color: #1c1c1e;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-family: "Courier New", monospace;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#generate_button:hover { background-color: #e8c06a; }
+#generate_button:pressed { background-color: #b8903d; }
+
+#theme_button {
+    background-color: transparent;
+    color: #666668;
+    border: 1px solid #444446;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-family: "Courier New", monospace;
+    letter-spacing: 1px;
+}
+
+#theme_button:hover {
+    color: #d4a853;
+    border-color: #d4a853;
+}
+
+#notation_view {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #333335;
+}
+
+#notation_view QSvgWidget {
+    background-color: #ffffff;
+}
+
+QFrame[frameShape="4"],
+QFrame[frameShape="5"] {
+    color: #333335;
+    background-color: #333335;
+}
+
+QScrollBar:vertical {
+    background: #1c1c1e;
+    width: 8px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background: #444446;
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover { background: #d4a853; }
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical { height: 0px; }
+
+#play_button {
+    background-color: transparent;
+    color: #d4a853;
+    border: 1px solid #d4a853;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-family: "Courier New", monospace;
+    letter-spacing: 1px;
+}
+
+#play_button:hover { background-color: #2a2208; }
+#play_button:pressed { background-color: #d4a853; color: #1c1c1e; }
+#play_button:disabled { color: #444446; border-color: #444446; }

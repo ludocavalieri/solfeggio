@@ -1,0 +1,9 @@
+# GUI
+PyQt6>=6.5.0
+
+# Music notation & theory
+music21>=9.0.0
+
+# Audio synthesis & playback
+pygame>=2.5.0
+numpy>=1.24.0
