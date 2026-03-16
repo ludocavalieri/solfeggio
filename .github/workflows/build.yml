@@ -1,0 +1,116 @@
+name: Build Executables
+
+# Trigger on version tags (e.g. v1.0.0) or manually from GitHub Actions tab
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: linux
+            artifact: SolfeggIO-linux
+          - os: windows-latest
+            name: windows
+            artifact: SolfeggIO-windows.exe
+          - os: macos-latest
+            name: macos
+            artifact: SolfeggIO-macos
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      # ── Checkout ──────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Python ───────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # ── System dependencies (Linux only) ─────────────────────
+      - name: Install Linux system dependencies
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libxcb-cursor0 \
+            libxcb-xinerama0 \
+            libxcb-icccm4 \
+            libxcb-image0 \
+            libxcb-keysyms1 \
+            libxcb-randr0 \
+            libxcb-render-util0 \
+            libxcb-xkb1 \
+            libxkbcommon-x11-0 \
+            libegl1
+
+      # ── Python dependencies ───────────────────────────────────
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      # ── Build ─────────────────────────────────────────────────
+      - name: Build executable with PyInstaller
+        run: pyinstaller solfeggio.spec
+
+      # ── Rename output ─────────────────────────────────────────
+      - name: Rename executable (Linux/macOS)
+        if: matrix.os != 'windows-latest'
+        run: mv dist/SolfeggIO dist/${{ matrix.artifact }}
+
+      - name: Rename executable (Windows)
+        if: matrix.os == 'windows-latest'
+        run: mv dist/SolfeggIO.exe dist/${{ matrix.artifact }}
+        shell: bash
+
+      # ── Upload artifact ───────────────────────────────────────
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact }}
+          path: dist/${{ matrix.artifact }}
+          retention-days: 30
+
+  # ── Create GitHub Release with all three executables ─────────
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: SolfeggIO ${{ github.ref_name }}
+          body: |
+            ## SolfeggIO ${{ github.ref_name }}
+
+            ### Installation
+            1. Download the executable for your platform below
+            2. Install LilyPond: https://lilypond.org/download.html
+            3. Run `python3 scripts/setup_env.py` once to configure LilyPond
+            4. Launch SolfeggIO
+
+            > **Note:** LilyPond must be installed separately — it cannot be bundled.
+          files: |
+            dist/SolfeggIO-linux/SolfeggIO-linux
+            dist/SolfeggIO-windows.exe/SolfeggIO-windows.exe
+            dist/SolfeggIO-macos/SolfeggIO-macos
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') }}
