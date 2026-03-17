@@ -3,6 +3,7 @@
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
+[![Build](https://github.com/ludocavalieri/solfeggio/actions/workflows/build.yml/badge.svg)](https://github.com/ludocavalieri/solfeggio/actions/workflows/build.yml)
 
 A rhythm training desktop app for music students. SolfeggIO generates random rhythms based on your settings, renders them as proper music notation, and plays them back with a metronome so you can train your ear and sight-reading at your own pace.
 
@@ -63,6 +64,17 @@ python3 scripts/setup_env.py
 >After that, just use `python3 app.py` to launch the app.
 
 ## Using the App
+
+> [!IMPORTANT]
+> LilyPond must be installed on your system regardless of which option you choose — it cannot be bundled with the app.
+
+### Option A: Download the executable (recommended for most users)
+
+Download the latest release for your platform from the [Releases page](https://github.com/ludovica-cavalieri/solfeggio/releases). No Python installation required.
+
+### Option B: Run from source (recommended for developers)
+
+Follow the [Prerequisites](#-prerequisites) and [Installation](#️-installation) first.
 
 Launch SolfeggIO with:
 ```bash
