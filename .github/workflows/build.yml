@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             name: linux
             artifact: SolfeggIO-linux
             lilypond_binary: lilypond
@@ -41,7 +41,7 @@ jobs:
 
       # ── Install system dependencies (Linux) ───────────────────
       - name: Install Linux system dependencies
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -58,7 +58,7 @@ jobs:
 
       # ── Download and bundle LilyPond (Linux) ──────────────────
       - name: Download LilyPond (Linux)
-        if: matrix.os == 'ubuntu-20.04'
+        if: matrix.os == 'ubuntu-22.04'
         run: |
           wget -q https://gitlab.com/lilypond/lilypond/-/releases/v2.24.3/downloads/lilypond-2.24.3-linux-x86_64.tar.gz
           tar -xzf lilypond-2.24.3-linux-x86_64.tar.gz
