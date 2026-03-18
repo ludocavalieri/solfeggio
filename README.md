@@ -11,6 +11,20 @@ Dark Mode                  |  Light Mode
 :-------------------------:|:-------------------------:
 ![](figures/dark_mode.png) |  ![](figures/light_mode.png)
 
+**Settings panel (right sidebar):**
+| Setting | Description |
+|---|---|
+| Time Signature | Choose from common time signatures (4/4, 3/4, 6/8, etc.) |
+| Note Durations | Select which note and rest lengths to include |
+| Bars | Number of bars to generate (1–16) |
+| Tempo (BPM) | Playback speed in beats per minute (40–200) |
+| Allow upbeats | Whether notes can start on offbeats |
+
+**Buttons:**
+- **GENERATE** — creates a new random rhythm and renders it as notation
+- **▶ PLAY** — plays back the rhythm with a metronome count-in (click again to stop)
+- **☀ / ☾** — toggle between light and dark mode
+
 ## Using the App
 
 ### Option A: Download the executable (recommended for most users)
@@ -99,20 +113,6 @@ Launch SolfeggIO with:
 ```bash
 python3 app.py
 ```
-
-**Settings panel (right sidebar):**
-| Setting | Description |
-|---|---|
-| Time Signature | Choose from common time signatures (4/4, 3/4, 6/8, etc.) |
-| Note Durations | Select which note and rest lengths to include |
-| Bars | Number of bars to generate (1–16) |
-| Tempo (BPM) | Playback speed in beats per minute (40–200) |
-| Allow upbeats | Whether notes can start on offbeats |
-
-**Buttons:**
-- **GENERATE** — creates a new random rhythm and renders it as notation
-- **▶ PLAY** — plays back the rhythm with a metronome count-in (click again to stop)
-- **☀ / ☾** — toggle between light and dark mode
 
 ## Future Additions
 
