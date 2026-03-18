@@ -1,41 +1,39 @@
 # solfeggio.spec
-# PyInstaller spec file for SolfeggIO
-# Build with: pyinstaller solfeggio.spec
-
+import os
 import sys
 from PyInstaller.utils.hooks import collect_data_files, collect_submodules
 
-# Collect music21 data files (it has a lot of internal data)
 music21_datas = collect_data_files('music21')
+
+# Include the bundled LilyPond directory if it exists (set by CI)
+# In local builds this folder won't exist and LilyPond falls back
+# to system PATH detection in app.py
+lilypond_datas = []
+if os.path.exists('bundled_lilypond'):
+    lilypond_datas = [('bundled_lilypond', 'bundled_lilypond')]
 
 a = Analysis(
     ['app.py'],
     pathex=['.'],
     binaries=[],
     datas=[
-        # UI assets
         ('ui/style_dark.qss',  'ui'),
         ('ui/style_light.qss', 'ui'),
-        # music21 internal data
         *music21_datas,
+        *lilypond_datas,
     ],
     hiddenimports=[
-        # music21 uses dynamic imports internally
         *collect_submodules('music21'),
-        # PyQt6 modules that may not be auto-detected
         'PyQt6.QtSvg',
         'PyQt6.QtSvgWidgets',
         'PyQt6.QtPrintSupport',
-        # numpy & pygame
         'numpy',
         'pygame',
         'pygame.mixer',
     ],
     hookspath=[],
-    hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        # Keep the bundle lean — exclude things we don't use
         'matplotlib',
         'tkinter',
         'scipy',
@@ -55,12 +53,10 @@ exe = EXE(
     [],
     name='SolfeggIO',
     debug=False,
-    bootloader_ignore_signals=False,
     strip=False,
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
-    console=False,   # no terminal window on launch
-    disable_windowed_traceback=False,
-    # icon='docs/icon.ico',  # uncomment when you have an icon
+    console=False,
+    # icon='docs/icon.ico',
 )

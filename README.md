@@ -11,7 +11,46 @@ Dark Mode                  |  Light Mode
 :-------------------------:|:-------------------------:
 ![](figures/dark_mode.png) |  ![](figures/light_mode.png)
 
-## Prerequisites
+## Using the App
+
+### Option A: Download the executable (recommended for most users)
+ 
+1. Download the latest release for your platform from the [Releases page](https://github.com/ludocavalieri/solfeggio/releases)
+2. Launch it — everything is bundled, no installation required!
+ 
+> [!NOTE]
+> First-time launch on macOS and Windows may require a one-time security confirmation. See [macOS Notes](#-macos-notes) and [Windows Notes](#-windows-notes) below.
+
+**macOS Notes**
+ 
+macOS will block the executable on first launch since it hasn't been signed by an Apple-registered developer. To open it:
+ 
+1. Double-click `SolfeggIO-macos` — you'll see a warning dialog
+2. Go to **System Settings** → **Privacy & Security**
+3. Scroll down — you'll see a message about SolfeggIO being blocked
+4. Click **Open Anyway** and confirm
+ 
+You only need to do this once. Alternatively, from the terminal:
+ 
+```bash
+xattr -dr com.apple.quarantine SolfeggIO-macos
+chmod +x SolfeggIO-macos
+./SolfeggIO-macos
+```
+ 
+**Windows Notes**
+ 
+Windows SmartScreen may block the executable on first launch. To open it:
+ 
+1. Double-click `SolfeggIO-windows.exe`
+2. Click **More info** in the blue dialog that appears
+3. Click **Run anyway**
+ 
+You only need to do this once.
+
+### Option B: Run from source (recommended for developers)
+
+#### Prerequisites
 
 Before running SolfeggIO, you need the following installed on your system:
 
@@ -34,7 +73,7 @@ brew install lilypond
 # Download the installer from https://lilypond.org/download.html
 ```
 
-## Installation
+#### Installation
 
 1. Clone the repository:
 ```bash
@@ -54,27 +93,7 @@ source .venv/bin/activate      # macOS/Linux
 pip install -r requirements.txt
 ```
 
-4. Configure LilyPond:
-```bash
-python3 scripts/setup_env.py
-```
-
->[!NOTE] 
->`setup_env.py` only needs to be run once after installation.
->After that, just use `python3 app.py` to launch the app.
-
-## Using the App
-
-> [!IMPORTANT]
-> LilyPond must be installed on your system regardless of which option you choose — it cannot be bundled with the app.
-
-### Option A: Download the executable (recommended for most users)
-
-Download the latest release for your platform from the [Releases page](https://github.com/ludovica-cavalieri/solfeggio/releases). No Python installation required.
-
-### Option B: Run from source (recommended for developers)
-
-Follow the [Prerequisites](#-prerequisites) and [Installation](#️-installation) first.
+#### Launching the App
 
 Launch SolfeggIO with:
 ```bash
